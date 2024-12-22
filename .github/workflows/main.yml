@@ -5,7 +5,8 @@ on:
       - build
 jobs:
   build:
-    runs_on: ubuntu-22.04
+    name: build
+    runs_on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@4
