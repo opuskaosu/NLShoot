@@ -1,0 +1,6 @@
+name: Haxe Project build
+on:
+  push:
+    branches:
+      - main
+      
