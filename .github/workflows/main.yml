@@ -7,7 +7,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: チェックアウトコード
+      - name: setup Haxe
+        uses: krdlab/setup-haxe@v1.5.1
+        with:
+          haxe-version: 4.3.1
+      - name: install Lime
+        run: haxelib install lime
+      - name: install OpenFL
+        run: haxelib install openfl
+      - name: install HaxeFlixel
+        run: haxelib install flixel
+      - name: checkout repo
         uses: actions/checkout@v4
         with:
           repository: '${{ github.repository }}'
