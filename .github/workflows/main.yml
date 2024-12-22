@@ -29,9 +29,9 @@ jobs:
         if: steps.restore-libs.outputs.cache-hit != 'true'
         run: haxelib install flixel
       # 必要に応じて
-      - name: install flixel-addons etc
-        if: steps.libs-cache.outputs.cache-hit != 'true'
-        run: haxelib run lime setup flixel
+      #- name: install flixel-addons etc
+        #if: steps.libs-cache.outputs.cache-hit != 'true'
+        #run: haxelib run lime setup flixel
 
       - name: checkout repo
         uses: actions/checkout@v4
