@@ -32,9 +32,6 @@ jobs:
       - name: install flixel-addons etc
         if: steps.libs-cache.outputs.cache-hit != 'true'
         run: haxelib run lime setup flixel
-      # limeコマンド
-      - name: install lime command
-        run: haxelib run lime setup
 
       - name: checkout repo
         uses: actions/checkout@v4
@@ -42,7 +39,7 @@ jobs:
           repository: '${{ github.repository }}'
 
       - name: build
-        run: lime build html5
+        run: haxelib run lime build html5
 
       - name: upload pages
         id: deployment
