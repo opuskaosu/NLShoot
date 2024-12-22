@@ -39,6 +39,7 @@ jobs:
           repository: '${{ github.repository }}'
 
       - name: build
+        id: build
         run: haxelib run lime build html5
 
       - name: upload pages
