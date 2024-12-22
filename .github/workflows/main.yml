@@ -28,7 +28,7 @@ jobs:
         if: steps.restore-libs.outputs.cache-hit != 'true'
         run: haxelib install flixel
       - name: library check
-        run: export HAXELIB_PATH=/path/to/haxelib && haxelib list
+        run: export HAXELIB_PATH=/opt/hostedtoolcache/haxe/4.3.1/x64/lib && haxelib list
       # 必要に応じて
       #- name: install flixel-addons etc
         #if: steps.libs-cache.outputs.cache-hit != 'true'
