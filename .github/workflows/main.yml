@@ -18,7 +18,6 @@ jobs:
         uses: krdlab/setup-haxe@v1.5.1
         with:
           haxe-version: 4.3.1
-      
       - name: install Lime
         if: steps.restore-libs.outputs.cache-hit != 'true'
         run: haxelib install lime
@@ -28,6 +27,8 @@ jobs:
       - name: install HaxeFlixel
         if: steps.restore-libs.outputs.cache-hit != 'true'
         run: haxelib install flixel
+      - name: library check
+        run: haxelib newrepo && echo HAXELIB_PATH
       # 必要に応じて
       #- name: install flixel-addons etc
         #if: steps.libs-cache.outputs.cache-hit != 'true'
