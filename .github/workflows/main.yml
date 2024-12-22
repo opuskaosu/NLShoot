@@ -1,6 +1,13 @@
-name: Haxe Project build
+name: Haxe Project Build(HaxeFlixel)
 on:
   push:
     branches:
       - main
-      
+jobs:
+  build:
+    runs_on: ubuntu-22.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@4
+        with: 
+          repository: '${{ github.repository }}'
