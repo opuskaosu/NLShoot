@@ -2,7 +2,7 @@ name: Haxe Project Build(HaxeFlixel)
 on:
   push:
     branches:
-      - main
+      - build
 jobs:
   build:
     runs_on: ubuntu-22.04
