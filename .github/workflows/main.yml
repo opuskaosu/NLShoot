@@ -20,13 +20,13 @@ jobs:
           haxe-version: 4.3.1
       
       - name: install Lime
-        if: steps.libs-cache.outputs.cache-hit != 'true'
+        if: steps.haxe-library.outputs.cache-hit != 'true'
         run: haxelib install lime
       - name: install OpenFL
-        if: steps.libs-cache.outputs.cache-hit != 'true'
+        if: steps.haxe-library.outputs.cache-hit != 'true'
         run: haxelib install openfl
       - name: install HaxeFlixel
-        if: steps.libs-cache.outputs.cache-hit != 'true'
+        if: steps.haxe-library.outputs.cache-hit != 'true'
         run: haxelib install flixel
       # 必要に応じて
       - name: install flixel-addons etc
