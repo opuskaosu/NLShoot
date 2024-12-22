@@ -5,10 +5,9 @@ on:
       - build
 jobs:
   build:
-    name: build
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@4
-        with: 
+      - name: チェックアウトコード
+        uses: actions/checkout@v4
+        with:
           repository: '${{ github.repository }}'
