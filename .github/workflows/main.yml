@@ -7,23 +7,48 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      #- name: setup Haxe
-        #uses: krdlab/setup-haxe@v1.5.1
-        #with:
-          #haxe-version: 4.3.1
-          
-      #- name: install Lime
-        #run: haxelib install lime
-      #- name: install OpenFL
-        #run: haxelib install openfl
-      #- #name: install HaxeFlixel
-        #run: haxelib install flixel
-        
+      - name: cache libs
+        id: libs-cache
+        uses: actions/cache@v4.2.0
+        with:
+          path: haxelib
+          key: haxe-library
+      
+      - name: setup Haxe
+        uses: krdlab/setup-haxe@v1.5.1
+        with:
+          haxe-version: 4.3.1
+      
+      - name: install Lime
+        if: steps.libs-cache.outputs.cache-hit != 'true'
+        run: haxelib install lime
+      - name: install OpenFL
+        if: steps.libs-cache.outputs.cache-hit != 'true'
+        run: haxelib install openfl
+      - name: install HaxeFlixel
+        if: steps.libs-cache.outputs.cache-hit != 'true'
+        run: haxelib install flixel
+      # 必要に応じて
+      - name: install flixel-addons etc
+        if: steps.libs-cache.outputs.cache-hit != 'true'
+        run: haxelib run lime setup flixel
+      # limeコマンド
+      - name: install lime command
+        run: haxelib run lime setup
+
       - name: checkout repo
         uses: actions/checkout@v4
         with:
           repository: '${{ github.repository }}'
 
-      - name: cd 
-        run: cd NLShoot
-          
+      - name: build
+        run: lime build html5
+
+      - name: upload pages
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./export/html5/bin/
+  
+        
+      
